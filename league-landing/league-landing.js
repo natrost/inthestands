@@ -157,7 +157,6 @@
       const card = mapEl.querySelector('.its-ll-card');
       const hideCard = () => card.classList.remove('is-on');
       function showCard(d, el) {
-        el.parentNode.appendChild(el);
         const t = d.t, r = el.querySelector('.ring').getBoundingClientRect(), wrap = mapEl.getBoundingClientRect();
         card.innerHTML = `${t.p[0] ? `<img src="${esc(t.p[0])}" alt="">` : ''}<div><strong>${esc(t.t)}</strong><span>${esc(t.st)}</span><span class="sub">${esc(t.c)}${t.y ? ' · Opened ' + t.y : ''}</span></div>`;
         const x = r.left - wrap.left + r.width / 2, y = r.top - wrap.top, below = y < 240;
@@ -190,7 +189,8 @@
       place(d3.zoomIdentity);
 
       const zoom = d3.zoom().scaleExtent([1, 8]).translateExtent([[0, 0], [W, H]])
-        .filter(e => (e.type !== 'wheel') && (!e.touches || e.touches.length > 1) && !e.button)
+        // Never start a pan on a pin, so a click on a stadium always reaches its overview link.
+        .filter(e => (e.type !== 'wheel') && (!e.touches || e.touches.length > 1) && !e.button && !(e.target.closest && e.target.closest('.pin')))
         .on('zoom', e => { land.attr('transform', e.transform); land.selectAll('path').attr('stroke-width', 1 / e.transform.k); place(e.transform); hideCard(); });
       svg.call(zoom);
       mapEl.querySelector('[data-z=in]').onclick = () => svg.transition().call(zoom.scaleBy, 1.6);
