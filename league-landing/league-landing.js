@@ -97,15 +97,15 @@
       if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
         rows.forEach(r => {
           const t = teams[r.dataset.i];
-          const move = e => {
-            const box = r.getBoundingClientRect(), metaRight = r.querySelector('.its-ll-meta').getBoundingClientRect().right;
-            const x = Math.min(Math.max(e.clientX + 32, metaRight + 32), innerWidth - preview.offsetWidth - 24);
-            preview.style.transform = `translate(${x}px, ${box.top + box.height / 2 - preview.offsetHeight / 2}px)`;
+          // Images sit flush with the right edge of the browser, centred on the hovered row.
+          const move = () => {
+            const box = r.getBoundingClientRect(), edge = root.getBoundingClientRect().right - parseFloat(getComputedStyle(root).paddingRight);
+            preview.style.transform = `translate(${edge - preview.offsetWidth}px, ${box.top + box.height / 2 - preview.offsetHeight / 2}px)`;
           };
           r.addEventListener('mouseenter', e => {
             const wasOn = preview.classList.contains('is-on');
             activate(r); listEl.classList.add('is-hovering');
-            const room = innerWidth - r.querySelector('.its-ll-meta').getBoundingClientRect().right - 56;
+            const room = root.getBoundingClientRect().right - parseFloat(getComputedStyle(root).paddingRight) - r.querySelector('.its-ll-meta').getBoundingClientRect().right - 32;
             const fit = Math.max(1, Math.min(3, Math.floor((room + 8) / 208)));
             preview.innerHTML = t.p.slice(0, fit).map(u => `<img src="${esc(u)}" alt="">`).join('');
             if (!wasOn) { preview.style.transition = 'none'; move(e); preview.offsetWidth; preview.style.transition = ''; }
