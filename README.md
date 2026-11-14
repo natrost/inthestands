@@ -20,8 +20,8 @@ List view + map view for the league landing pages (`/mls`, `/mlb`, `/nwsl`).
 3. Page settings → custom code (before `</body>`):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.0/league-landing/league-landing.css">
-<script src="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.0/league-landing/league-landing.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.1/league-landing/league-landing.css">
+<script src="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.1/league-landing/league-landing.js" defer></script>
 ```
 
 The original CMS list stays in the HTML (SEO, no-JS fallback) and is hidden by the script.

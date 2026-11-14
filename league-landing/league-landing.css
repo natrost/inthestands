@@ -14,10 +14,11 @@
 
 /* ---------- LIST ---------- */
 .its-ll-list { list-style:none; margin:0; padding:0; }
-.its-ll-row { border-top:1px solid var(--its-line); }
+.its-ll-row { border-top:1px solid var(--its-line); list-style:none; margin:0; padding:0; }
+.its-ll-row::marker { content:none; }
 .its-ll-row:last-child { border-bottom:1px solid var(--its-line); }
 .its-ll-row > a { display:flex; align-items:flex-start; gap:14px; padding:14px 0 10px; color:inherit; text-decoration:none; }
-.its-ll-num { font-size:13px; padding-top:.9em; color:var(--its-muted); font-variant-numeric:tabular-nums; min-width:38px; }
+.its-ll-num { font-size:13px; padding-top:.9em; color:var(--its-muted); min-width:38px; }
 .its-ll-team { font-size:clamp(34px,5.4vw,76px); font-weight:500; letter-spacing:-.035em; line-height:1.02;
   transition:color .2s, transform .35s cubic-bezier(.2,.7,.2,1); }
 .its-ll-meta { font-size:13px; padding-top:.7em; color:var(--its-muted); white-space:nowrap; }
