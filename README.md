@@ -20,8 +20,8 @@ List view + map view for the league landing pages (`/mls`, `/mlb`, `/nwsl`).
 3. Page settings → custom code (before `</body>`):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.1/league-landing/league-landing.css">
-<script src="https://cdn.jsdelivr.net/gh/natrost/inthestands@v0.1.1/league-landing/league-landing.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/natrost/inthestands@ea546b6384559d58ec4d8630ac0136ebc2a4567d/league-landing/league-landing.css">
+<script src="https://cdn.jsdelivr.net/gh/natrost/inthestands@ea546b6384559d58ec4d8630ac0136ebc2a4567d/league-landing/league-landing.js" defer></script>
 ```
 
 The original CMS list stays in the HTML (SEO, no-JS fallback) and is hidden by the script.
@@ -29,5 +29,5 @@ Add `#map` to the URL to open straight to the map.
 
 ### Releasing a change
 
-Commit, then tag a new version (`git tag v0.1.1 && git push --tags`) and bump the version in the Webflow custom code.
-jsDelivr caches tagged versions permanently, so each release needs a new tag.
+Commit and push, then put the new commit hash (`git rev-parse HEAD`) in the Webflow custom code URLs.
+Pin by commit hash: jsDelivr caches each hash forever, and it can take a long time to notice new tags.
